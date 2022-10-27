@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 
 import Logo from "components/logo";
 import WithBackground from "components/withBackground";
-import Background from 'images/background.png';
+import Background from 'images/background.jpg';
 
 import "./index.css";
 

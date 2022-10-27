@@ -2,7 +2,7 @@ import React from "react";
 
 import WithBackground from "components/withBackground";
 import Logo from "components/logo";
-import Background from 'images/background.png';
+import Background from 'images/background.jpg';
 
 import "./index.css";
 
