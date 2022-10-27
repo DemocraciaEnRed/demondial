@@ -1,0 +1,24 @@
+.topics {
+  color: white;
+  font-size: 20px;
+  margin-top: 8rem;
+  margin-bottom: 3rem;
+}
+
+.topics-description {
+  font-weight: 600;
+}
+
+.play {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 4rem;
+  background-color: #FB2D11;
+  border: none;
+}
+
+.game-owner {
+  font-size: 14px;
+  margin-top: 9rem;
+  text-decoration-line: underline;
+}

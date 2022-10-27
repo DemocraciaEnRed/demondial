@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Juego para el Mundial de Qatar 2022
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

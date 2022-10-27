@@ -1,38 +1,39 @@
+html, body, #root, .App, .App>div, .game-container, .full-height {
+  height: 100%;
+  overflow: auto;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@font-face {
+  font-family: 'Nippo';
+  src: local('Nippo'), url(./fonts/Nippo.woff) format('woff');
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+@font-face {
+  font-family: 'Nippo Bold';
+  src: local('Nippo Bold'), url(./fonts/Nippo-Bold.woff) format('woff');
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+@font-face {
+  font-family: 'General Sans Medium';
+  src: local('General Sans Medium'), url(./fonts/GeneralSansMedium.woff) format('woff');
+}
+
+p {
+  font-family: 'Nippo';
+}
+
+div {
+  margin: 0 auto;
+}
+
+.centered {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%) scale(2);
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }

@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Landing from "./stages/landing";
+import Explanation from "./stages/explanation";
+import Game from "./stages/game";
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'animate.css';
+import "./App.css";
+
+const App = () => {
+  const [currentStep, setCurrentStep] = useState("landing");
+
+  const renderStep = (step) => {
+    
+    switch (step) {
+      case 'landing':
+        return <Landing follow={() => setCurrentStep("explanation")}/>
+      case 'explanation':
+        return <Explanation follow={() => setCurrentStep("game")}/>
+      case 'game':
+        return <Game />
+      default:
+        return <Landing follow={() => setCurrentStep("explanation")}/>
+    }
+  }
+
+  return <div className="App">
+      {renderStep(currentStep)}
+  </div>;
 }
 
 export default App;
+
