@@ -26,7 +26,10 @@ const App = () => {
   }
 
   return <div className="App">
-      {renderStep(currentStep)}
+      <div className='mobile-vertical'>{renderStep(currentStep)}</div>
+      <div className='mobile-horizontal'>{renderStep(currentStep)}</div>
+
+      
   </div>;
 }
 

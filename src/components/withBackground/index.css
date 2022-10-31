@@ -2,6 +2,12 @@
   padding-top: 25px;
   background-position: center;
   background-color: black;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* filter: grayscale(30%) sepia(26%) blur(1px) brightness(56%) saturate(339%) opacity(65%) contrast(163%);
+-webkit-filter: grayscale(30%) sepia(26%) blur(1px) brightness(56%) saturate(339%) opacity(65%) contrast(163%);
+-moz-filter: grayscale(30%) sepia(26%) blur(1px) brightness(56%) saturate(339%) opacity(65%) contrast(163%);
+  z-index:0; */
 }
 
 .light {

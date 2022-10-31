@@ -22,8 +22,8 @@ const Countdown = ({ setIsLoading }) => {
   };
   
 
-  return <div>
-    <Logo />
+  return <div className='enFrame'>
+    {/* <Logo /> */}
     <p className="ready">Empezamos en...</p>
     <p
       key={loadingNumber}

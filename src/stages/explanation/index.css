@@ -22,3 +22,42 @@
   margin-top: 9rem;
   text-decoration-line: underline;
 }
+
+.enFrame{
+  padding: 10%;
+}
+
+@media screen and  (orientation: landscape) {
+  .col-10{
+    /* width: 100% !important; */
+    margin: auto !important;
+  }
+  .enFrame{
+    height: 10%;
+  }
+  .topics {
+    color: white;
+    font-size: 20px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .topics-description {
+    font-weight: 600;
+  }
+  
+  .play {
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 1rem;
+    background-color: #FB2D11;
+    border: none;
+  }
+  
+  .game-owner {
+    font-size: 14px;
+    margin-top: 2rem;
+    text-decoration-line: underline;
+  }
+  
+}
