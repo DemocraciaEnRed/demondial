@@ -1,11 +1,11 @@
 import React from "react";
 
-import { ReactComponent as LogoSvg } from 'images/logo.svg';
+import LogoPng from "images/isologotipo.png";
 
 import "./index.css";
 
-const Logo = ({ color = "white" }) => <div>
-  <LogoSvg fill={color} />
+const Logo = () => <div>
+  <img alt="Logo del Demondial" src={LogoPng}></img>
 </div>
 
 export default Logo;

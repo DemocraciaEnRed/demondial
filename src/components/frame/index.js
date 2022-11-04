@@ -26,7 +26,7 @@ const Frame = ({ src }) => <div>
     <div id="for-vertical">
         <Logo />
         <h3>Ponga el telefono en horizontal</h3>
-        <img src={rotar}></img>
+        <img alt="Ícono de rotación" src={rotar}></img>
     </div>
     
 </div>
