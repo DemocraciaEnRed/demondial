@@ -1,9 +1,0 @@
-version: '3'
-
-services:
-  web:
-    build:
-      context: .
-    image: demondial:latest
-    ports:
-      - 3000:80

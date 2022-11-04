@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-import Logo from "../logo";
-
 import "./index.css";
 
 const Countdown = ({ setIsLoading }) => {
@@ -23,7 +21,6 @@ const Countdown = ({ setIsLoading }) => {
   
 
   return <div className='enFrame'>
-    {/* <Logo /> */}
     <p className="ready">Empezamos en...</p>
     <p
       key={loadingNumber}

@@ -1,7 +1,0 @@
-Dockerfile
-.git
-.gitignore
-.editorconfig
-build
-*.yml
-node_modules/
