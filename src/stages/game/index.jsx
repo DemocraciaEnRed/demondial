@@ -14,7 +14,7 @@ export default function Game() {
       {
         isLoading ? 
         <Countdown setIsLoading={setIsLoading}/> : 
-        <div className="full-height"><Frame src="/demondial/wickgame.html"/></div>
+        <div className="full-height"><Frame src="/wickgame.html"/></div>
       }
     </WithBackground>
   );
