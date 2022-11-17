@@ -25,7 +25,7 @@ const showButtonsPlayers = () => {
 const hidePlayers = () => {
     [
         messiClip, neymarClip, valenciaClip, 
-        vegaClip, suarezClip, pelotaClip, arqueroClip, defensaClip
+        vegaClip, suarezClip, pelotaClip, arqueroClip, defensoresClip
         
     ].forEach(p => p.gotoAndStop(1));    
 };
@@ -70,136 +70,170 @@ const dummyAsks = [{
     text: "Qué le pasó al amigo del amigo del amigo que bla bla bla bla bla bla bla bla bla? \n bla bla bla bla bla bla bla bla??",
     options: [["Ganó", true],["Pensó", false],["Jugó", false],["Ayer", false]],
 }];
+
 const data = {
     alemania: {
         name: 'Alemania',
         asks: dummyAsks,
+        clip: "BBA"
     },
     arabia_saudita: {
         name: 'Arabia Saudita',
         asks: dummyAsks,
+        clip: "MVA"
     },
     argentina: {
         name: 'Argentina',
         asks: dummyAsks,
+        clip: "MCU"
     },
     australia: {
         name: 'Australia',
         asks: dummyAsks,
+        clip: "MAA"
     },
     belgica: {
         name: 'Bélgica',
         asks: dummyAsks,
+        clip: "BRB"
     },
     brasil: {
         name: 'Brasil',
         asks: dummyAsks,
+        clip: "NAE"
     },
     camerun: {
         name: 'Camerún',
         asks: dummyAsks,
+        clip: "NVS"
     },
     canada: {
         name: 'Canadá',
         asks: dummyAsks,
+        clip: "BRB"
     },
     catar: {
         name: 'Catar',
         asks: dummyAsks,
+        clip: "MRC"
     },
     corea_del_sur: {
         name: 'Corea del Sur',
         asks: dummyAsks,
+        clip: "MRC"
     },
     costa_rica: {
         name: 'Costa Rica',
         asks: dummyAsks,
+        clip: "MRC"
     },
     croacia: {
         name: 'Croacia',
         asks: dummyAsks,
+        clip: "MRC"
     },
     dinamarca: {
         name: 'Dinamarca',
         asks: dummyAsks,
+        clip: "BRB"
     },
     ecuador: {
         name: 'Ecuador',
         asks: dummyAsks,
+        clip: "NAE"
     },
     espana: {
         name: 'España',
         asks: dummyAsks,
+        clip: "BRB"
     },
     estados_unidos: {
         name: 'Estados Unidos',
         asks: dummyAsks,
+        clip: "BBA"
     },
     francia: {
         name: 'Francia',
         asks: dummyAsks,
+        clip: "NAF"
     },
     gales: {
         name: 'Gales',
         asks: dummyAsks,
+        clip: "BRB"
     },
     ghana: {
         name: 'Ghana',
         asks: dummyAsks,
+        clip: "NBG"
     },
     inglaterra: {
         name: 'Inglaterra',
         asks: dummyAsks,
+        clip: "BBA"
     },
     iran: {
         name: 'Irán',
         asks: dummyAsks,
+        clip: "MBI"
     },
     japon: {
         name: 'Japón',
         asks: dummyAsks,
+        clip: "BAJ"
     },
     marruecos: {
         name: 'Marruecos',
         asks: dummyAsks,
+        clip: "BRB"
     },
     mexico: {
         name: 'México',
         asks: dummyAsks,
+        clip: "BVM"
     },
     paises_bajos: {
         name: 'Países Bajos',
         asks: dummyAsks,
+        clip: "BNP"
     },
     polonia: {
         name: 'Polonia',
         asks: dummyAsks,
+        clip: "BBA"
     },
     portugal: {
         name: 'Portugal',
         asks: dummyAsks,
+        clip: "BRB"
     },
     senegal: {
         name: 'Senegal',
         asks: dummyAsks,
+        clip: "NVS"
     },
     serbia: {
         name: 'Serbia',
         asks: dummyAsks,
+        clip: "BRB"
     },
     suiza: {
         name: 'Suiza',
         asks: dummyAsks,
+        clip: "BRB"
     },
     tunez: {
         name: 'Túnez',
         asks: dummyAsks,
+        clip: "BRB"
     },
     uruguay: {
         name: 'Uruguay',
         asks: dummyAsks,
+        clip: "MCU"
     }
 };
+
 
 window.Scroller = class {
     constructor(clip){
@@ -265,19 +299,21 @@ window.Defensor = class {
     
     initialize(country) {
         this.clip = this.getClip(country);
-        this.clip.gotoAndStop(2);
+        if (country !== "arquero") {
+            this.clip.gotoAndStop(data[country]['clip']);    
+        } else {
+            this.clip.gotoAndStop(2);
+        }
         this.clip.x = 3900;
         this.clip.y = 720;
     }
     
     getClip(country) {
         switch (country) {
-            case 'brasil':
-                return defensaClip;
             case 'arquero':
                 return arqueroClip;
             default:
-                return defensaClip;
+                return defensoresClip;
         }
     }
 
@@ -313,8 +349,8 @@ window.Ask = class {
         this.currentD = null;
     }
     
-    setNumber(number) {
-        askNumber.setText("Pregunta #" + number);
+    setNumber(number, country) {
+        askNumber.setText("Pregunta #" + number + " - " + data[country].name);
     }
     
     prepareOptions() {
@@ -402,14 +438,14 @@ window.GameManager = class {
         if (!this.gameOver && this.stoped && this.askOpen && !this.askManager && this.countryDefensor) {
             const asks = data[this.countryDefensor].asks;
             this.askManager = new Ask(asks);
-            this.askManager.setNumber(this.askNumber);
+            this.askManager.setNumber(this.askNumber, this.countryDefensor);
             this.askManager.nextAsk();
         }
     }
     
     chequearCountryDefensor() {
         if (!this.gameOver && this.player && !this.countryDefensor) {
-            this.countryDefensor = this.remainingCountries[0];
+            this.countryDefensor = this.remainingCountries.shift();
         }
     }
 
@@ -430,7 +466,7 @@ window.GameManager = class {
             hideOptions();
         } else {
             this.askNumber += 1;
-            this.askManager.setNumber(this.askNumber);
+            this.askManager.setNumber(this.askNumber, this.countryDefensor);
             this.errorAnswer();
         }
     }
@@ -453,6 +489,7 @@ window.GameManager = class {
             } else {
                 this.defensorFromTo = [1600, -1000];
                 this.goToQuestion();
+                this.countryDefensor = null;
             }
         }, 1000);
     }
@@ -473,7 +510,9 @@ window.GameManager = class {
         hideButtonPlayers();
         this.player = new Player(clip, country);
         this.defensor = new Defensor();
-        this.defensor.initialize('brasil');
+        this.remainingCountries = this.remainingCountries.filter(c => c !== country)
+        this.countryDefensor = this.remainingCountries.shift();
+        this.defensor.initialize(this.countryDefensor);
         this.goToQuestion();
     }
     
@@ -486,7 +525,6 @@ window.GameManager = class {
         
         setTimeout(() => {
             this.player.stoped();
-            this.defensor.stoped()
             this.stoped = true;
             this.askNumber += 1;
             this.askOpen = true;
