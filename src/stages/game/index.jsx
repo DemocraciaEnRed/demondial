@@ -11,11 +11,8 @@ export default function Game() {
 
   return (
     <WithBackground background={Background} light>
-      {
-        isLoading ? 
-        <Countdown setIsLoading={setIsLoading}/> : 
-        <div className="full-height"><Frame src="/demondial/wickgame.html"/></div>
-      }
+        <Countdown setIsLoading={setIsLoading}/>
+        <div className="full-height" style={{visibility: isLoading ? 'hidden' : 'visible'}}><Frame src="/demondial/wickgame.html"/></div>
     </WithBackground>
   );
 };
