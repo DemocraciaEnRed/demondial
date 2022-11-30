@@ -1,9 +1,20 @@
 const groundSpeed = 80;
 
+const hideButtonDeNuevo = () => {
+    deNuevoButton.x = 0;
+    deNuevoButton.y = -400;
+};
+hideButtonDeNuevo();
+
+const showButtonDeNuevo = () => {
+    deNuevoButton.x = 1000;
+    deNuevoButton.y = 650;
+};
+
 const hideButtonPlayers = () => {
     [
         messiButton, neymarButton, suarezButton, 
-        vegaButton, valenciaButton        
+        vegaButton, valenciaButton
     ].forEach(p => {
         p.x = 0;
         p.y = -400;
@@ -243,11 +254,11 @@ window.Ask = class {
         textAnswerC.setText(this.currentC);
         textAnswerD.setText(this.currentD);
         answerFondoClip.gotoAndStop(2);
-        answerA.x = answerB.x = answerC.x = answerD.x = 535;
-        answerA.y = 358;
-        answerB.y = 443;
-        answerC.y = 527;
-        answerD.y = 616;
+        answerA.x = answerB.x = answerC.x = answerD.x = 620;
+        answerA.y = 470;
+        answerB.y = 540;
+        answerC.y = 610;
+        answerD.y = 680;
     }
     
     
@@ -279,6 +290,8 @@ window.GameManager = class {
     
     init() {
         showButtonsPlayers();
+        hidePlayers();
+        hideButtonDeNuevo();
         this.player = null;
         this.defensor = null;
         this.defensorFromTo = null;
@@ -286,7 +299,6 @@ window.GameManager = class {
         this.countryDefensor = null;
         this.festejanding = false;
         this.gameOver = false;
-        this.win = false;
         this.stoped = true;
         this.askNumber = 0;
         this.askOpen = false;
@@ -353,13 +365,15 @@ window.GameManager = class {
         if (this.gameOver) {
             hideOptions();
             hidePlayers();
-            const notaFinal = Math.round(10 * this.successAnswers / 15)
+            const notaFinal = Math.round(10 * this.successAnswers / 15);
             if (this.win) {
                 askNumber.setText("Ganaste! te sacaste un: " + notaFinal);
+                this.player.clip.gotoAndStop(6);
             } else {
                 askNumber.setText("Perdiste! te sacaste un: " + notaFinal);
+                this.player.clip.gotoAndStop(7);
             }
-            this.init();
+            showButtonDeNuevo();
         }
     }
     
