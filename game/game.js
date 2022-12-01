@@ -289,6 +289,8 @@ window.GameManager = class {
     }
     
     init() {
+        stopAllSounds()
+        playSound('publico.mp3')
         showButtonsPlayers();
         hidePlayers();
         hideButtonDeNuevo();
@@ -306,6 +308,7 @@ window.GameManager = class {
         this.successAnswers = 0;
         this.errorAnswers = 0;
         this.remainingCountries = [...Object.keys(data)];
+        this.finalSound = false;
         barajar(this.remainingCountries);
     }
     
@@ -369,9 +372,17 @@ window.GameManager = class {
             if (this.win) {
                 askNumber.setText("Ganaste! te sacaste un: " + notaFinal);
                 this.player.clip.gotoAndStop(6);
+                if (!this.finalSound) {
+                    playSound("ganamo.mp3")
+                    this.finalSound = true;
+                }
             } else {
                 askNumber.setText("Perdiste! te sacaste un: " + notaFinal);
                 this.player.clip.gotoAndStop(7);
+                if (!this.finalSound) {
+                    playSound("perdimo.mp3")
+                    this.finalSound = true;
+                }                
             }
             showButtonDeNuevo();
         }
@@ -396,8 +407,10 @@ window.GameManager = class {
         this.festejanding = true;
         if (this.successAnswers % 5 === 0) {
             this.player.patear();
+            playSound("gol.mp3")
             this.defensor.clip.gotoAndStop(3);
         } else {
+            playSound("aplausos.mp3")
             this.player.festejito();
         }
         setTimeout(() => {
@@ -426,12 +439,14 @@ window.GameManager = class {
             this.gameOver = true;
             this.win = false;
         } else {
+            playSound("bu.mp3")
             this.askManager.nextAsk();
         }
     }
     
     
     selectPlayer(clip, country){
+        playSound("silbato.mp3")
         this.stoped = false;
         this.countryPlayer = country;
         hideButtonPlayers();

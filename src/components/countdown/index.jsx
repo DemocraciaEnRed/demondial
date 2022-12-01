@@ -19,7 +19,7 @@ const Countdown = ({ setIsLoading }) => {
     1: "FB2D11"
   };
   
-
+  if (loadingNumber <= 0) return
   return <div className='enFrame'>
     <p className="ready">Empezamos en...</p>
     <p
