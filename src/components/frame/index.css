@@ -6,7 +6,7 @@
   width:800px;
   height: 1300px;
 } */
-@media screen and (width < 746px){
+@media screen and (orientation: portrait){
   iframe{
     display: none;
   }
@@ -26,12 +26,12 @@
   @keyframes rotar45 {
     from { 
       transform: rotate(0deg); 
-  } to { 
-      transform: rotate(-90deg); 
-  }
+    } to { 
+        transform: rotate(-90deg); 
+    }
 }
 }
-@media screen and  (orientation: landscape) {
+@media screen and (orientation: landscape) {
 
   #for-vertical{
     display: none;
@@ -41,9 +41,6 @@
     top: 5px;
     right: 0px;
     margin-top: 0px !important;
-    /* width: ;  */
-    /* margin-right: 5px;
-    margin-top: 30px; */
   }
   iframe{ 
     width:100%;
@@ -51,6 +48,6 @@
   }
   canvas {
     width: 100%;
-    margin: 0px !importan;
+    margin: 0px !important;
   }
 }

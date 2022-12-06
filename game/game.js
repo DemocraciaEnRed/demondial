@@ -6,11 +6,18 @@ const hideButtonDeNuevo = () => {
 };
 hideButtonDeNuevo();
 
+const hideButtonNext = () => {
+    buttonNext.x = 0;
+    buttonNext.y = -400;
+};
+const showButtonNext = () => {
+    buttonNext.x = 1200;
+    buttonNext.y = 750;
+};
 const showButtonDeNuevo = () => {
     deNuevoButton.x = 1000;
     deNuevoButton.y = 650;
 };
-
 const hideButtonPlayers = () => {
     [
         messiButton, neymarButton, suarezButton, 
@@ -50,12 +57,22 @@ const hideOptions = () => {
         p.y = -400;
     });
     [
-        askNumber, askText, 
         textAnswerA, textAnswerB, textAnswerC, textAnswerD
     ].forEach(p => p.setText(""));
-    answerFondoClip.gotoAndStop(1);
 };
 hideOptions();
+
+const hideTitles = () => {
+    [
+        askNumber, askText,
+    ].forEach(p => p.setText(""));
+};
+hideTitles();
+
+const hideFondoClip = () => {
+    answerFondoClip.gotoAndStop(1);
+};
+hideFondoClip();
 
 const barajar = (array) => {
   array.sort(() => Math.random() - 0.5);
@@ -261,8 +278,12 @@ window.Ask = class {
         answerD.y = 680;
     }
     
+    showExplanation() {
+        textAnswerB.setText(this.currentSuccess);
+    } 
     
     nextAsk() {
+        hideButtonNext();
         this.i += 1;
         this.currentAsk = this.asks[this.i];
         this.currentSuccess = this.currentAsk.options.find(o => o[1] === true)[0];
@@ -289,7 +310,8 @@ window.GameManager = class {
     }
     
     init() {
-        stopAllSounds()
+        stopAllSounds();
+        hideButtonNext();
         playSound('publico.mp3')
         showButtonsPlayers();
         hidePlayers();
@@ -367,6 +389,8 @@ window.GameManager = class {
     chequearGameOver() {
         if (this.gameOver) {
             hideOptions();
+            hideTitles();
+            hideFondoClip();
             hidePlayers();
             const notaFinal = Math.round(10 * this.successAnswers / 15);
             if (this.win) {
@@ -393,6 +417,8 @@ window.GameManager = class {
         if (this.askManager[attr] === this.askManager.currentSuccess) {
             this.successAnswer();
             hideOptions();
+            hideTitles();
+            hideFondoClip();
         } else {
             this.askNumber += 1;
             this.askManager.setNumber(this.askNumber, this.countryDefensor);
@@ -402,6 +428,8 @@ window.GameManager = class {
     
     successAnswer() {
         hideOptions();
+        hideTitles();
+        hideFondoClip();
         this.successAnswers += 1;
         this.countryDefensor = null;
         this.festejanding = true;
@@ -433,6 +461,12 @@ window.GameManager = class {
         }, 1000);
     }
     
+    showCorrect() {
+        hideOptions();
+        this.askManager.showExplanation();
+        showButtonNext();
+    }
+    
     errorAnswer() {
         this.errorAnswers += 1;
         if (this.askManager.i >= 2 || this.askNumber >= 15) {
@@ -440,7 +474,7 @@ window.GameManager = class {
             this.win = false;
         } else {
             playSound("bu.mp3")
-            this.askManager.nextAsk();
+            this.showCorrect();
         }
     }
     
