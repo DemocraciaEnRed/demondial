@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Landing from "./stages/landing";
 import Explanation from "./stages/explanation";
 import Game from "./stages/game";
+import Rotate from "components/rotate";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'animate.css';
@@ -24,13 +25,9 @@ const App = () => {
         return <Landing follow={() => setCurrentStep("explanation")}/>
     }
   }
+  if (window.matchMedia('(orientation: portrait)').matches) return <Rotate />
 
-  return <div className="App">
-      <div className='mobile-vertical'>{renderStep(currentStep)}</div>
-      <div className='mobile-horizontal'>{renderStep(currentStep)}</div>
-
-      
-  </div>;
+  return <div className="App">{renderStep(currentStep)}</div>;
 }
 
 export default App;

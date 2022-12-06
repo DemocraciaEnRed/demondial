@@ -1,0 +1,22 @@
+@media screen and (orientation: portrait){
+  #for-vertical h3{
+    color: #fff;
+    font-size: 3rem;
+    margin-top: 50%;
+  }
+  #for-vertical img {
+      margin-top: 50px !important;
+      animation-duration: 3s;
+      animation-name: rotar45;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+
+    }
+  @keyframes rotar45 {
+    from { 
+      transform: rotate(0deg); 
+    } to { 
+        transform: rotate(-90deg); 
+    }
+  }
+}
