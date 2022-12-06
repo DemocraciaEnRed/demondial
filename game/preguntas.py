@@ -1,173 +1,206 @@
 import pandas as pd
+import numpy as np
 import json
 
 DATA = {
     'alemania': {
         "name": 'Alemania',
         "asks": [],
-        "clip": "BBA"
+        "clip": "BBA",
+        
     },
     'arabia_saudita': {
         "name": 'Arabia Saudita',
         "asks": [],
-        "clip": "MVA"
+        "clip": "MVA",
+        
     },
     'argentina': {
         "name": 'Argentina',
         "asks": [],
-        "clip": "MCU"
+        "clip": "MCU",
+        
     },
     'australia': {
         "name": 'Australia',
         "asks": [],
-        "clip": "MAA"
+        "clip": "MAA",
+        
     },
     'belgica': {
         "name": 'Bélgica',
         "asks": [],
-        "clip": "BRB"
+        "clip": "BRB",
+        
     },
     'brasil': {
         "name": 'Brasil',
         "asks": [],
-        "clip": "NAE"
+        "clip": "NAE",
+        
     },
     'camerun': {
         "name": 'Camerún',
         "asks": [],
-        "clip": "NVS"
+        "clip": "NVS",
+        
     },
     'canada': {
         "name": 'Canadá',
         "asks": [],
-        "clip": "BRB"
+        "clip": "BRB",
+        
     },
     'catar': {
         "name": 'Catar',
         "asks": [],
-        "clip": "MRC"
+        "clip": "MRC",
+        
     },
     'corea_del_sur': {
         "name": 'Corea del Sur',
         "asks": [],
-        "clip": "MRC"
+        "clip": "MRC",
+        
     },
     'costa_rica': {
         "name": 'Costa Rica',
         "asks": [],
-        "clip": "MRC"
+        "clip": "MRC",
+        
     },
     'croacia': {
         "name": 'Croacia',
         "asks": [],
-        "clip": "MRC"
+        "clip": "MRC",
+        
     },
     'dinamarca': {
         "name": 'Dinamarca',
         "asks": [],
-        "clip": "BRB"
+        "clip": "BRB",
+        
     },
     'ecuador': {
         "name": 'Ecuador',
         "asks": [],
-        "clip": "NAE"
+        "clip": "NAE",
+        
     },
     'espana': {
         "name": 'España',
         "asks": [],
-        "clip": "BRB"
+        "clip": "BRB",
+        
     },
     'estados_unidos': {
         "name": 'Estados Unidos',
         "asks": [],
-        "clip": "BBA"
+        "clip": "BBA",
+        
     },
     'francia': {
         "name": 'Francia',
         "asks": [],
-        "clip": "NAF"
+        "clip": "NAF",
+        
     },
     'gales': {
         "name": 'Gales',
         "asks": [],
-        "clip": "BRB"
+        "clip": "BRB",
+        
     },
     'ghana': {
         "name": 'Ghana',
         "asks": [],
-        "clip": "NBG"
+        "clip": "NBG",
+        
     },
     'inglaterra': {
         "name": 'Inglaterra',
         "asks": [],
-        "clip": "BBA"
+        "clip": "BBA",
+        
     },
     'iran': {
         "name": 'Irán',
         "asks": [],
-        "clip": "MBI"
+        "clip": "MBI",
+        
     },
     'japon': {
         "name": 'Japón',
         "asks": [],
-        "clip": "BAJ"
+        "clip": "BAJ",
+        
     },
     'marruecos': {
         "name": 'Marruecos',
         "asks": [],
-        "clip": "BRB"
+        "clip": "BRB",
+        
     },
     'mexico': {
         "name": 'México',
         "asks": [],
-        "clip": "BVM"
+        "clip": "BVM",
+        
     },
     'paises_bajos': {
         "name": 'Países Bajos',
         "asks": [],
-        "clip": "BNP"
+        "clip": "BNP",
+        
     },
     'polonia': {
         "name": 'Polonia',
         "asks": [],
-        "clip": "BBA"
+        "clip": "BBA",
+        
     },
     'portugal': {
         "name": 'Portugal',
         "asks": [],
-        "clip": "BRB"
+        "clip": "BRB",
+        
     },
     'senegal': {
         "name": 'Senegal',
         "asks": [],
-        "clip": "NVS"
+        "clip": "NVS",
+        
     },
     'serbia': {
         "name": 'Serbia',
         "asks": [],
-        "clip": "BRB"
+        "clip": "BRB",
+        
     },
     'suiza': {
         "name": 'Suiza',
         "asks": [],
-        "clip": "BRB"
+        "clip": "BRB",
+        
     },
     'tunez': {
         "name": 'Túnez',
         "asks": [],
-        "clip": "BRB"
+        "clip": "BRB",
+        
     },
     'uruguay': {
         "name": 'Uruguay',
         "asks": [],
-        "clip": "MCU"
+        "clip": "MCU",
+        
     }
 }
 
 renames = {v['name']: k for k,v in DATA.items()}
 df = pd.read_excel('preguntas.xlsx')
 df['Pais'] = df['Pais'].replace(renames)
-df = df.drop(['#','Asignado', 'Explicacion?', 'Fuente'], axis=1)
+df = df.drop(['#','Asignado', 'Fuente'], axis=1)
 df = df.rename(columns={'Pregunta': 'text'})
 df = df.dropna(subset='Respuesta correcta')
 
@@ -178,7 +211,7 @@ df['B-res'] = df['Respuesta correcta'].replace({'B': True, 'A': False, 'C': Fals
 df['C-res'] = df['Respuesta correcta'].replace({'C': True, 'A': False, 'B': False, 'D': False})
 df['D-res'] = df['Respuesta correcta'].replace({'D': True, 'A': False, 'B': False, 'C': False})
 
-
+df = df.replace(np.nan, '')
 for p in df['Pais'].unique():
     list_preg = []
     df_pais = df[df['Pais'] == p].copy().reset_index()
@@ -190,11 +223,9 @@ for p in df['Pais'].unique():
             [df_pais['C'][i], df_pais['C-res'][i]],
             [df_pais['D'][i], df_pais['D-res'][i]],
         ]
+        dict_preg_res['explanation'] = df_pais['Explicacion?'][i] 
         list_preg.append(dict_preg_res)
     DATA[p]['asks'] = list_preg
-
-
-print(DATA)
 
 
 file = open("final.txt","w")
