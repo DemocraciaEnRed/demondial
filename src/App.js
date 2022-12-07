@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Landing from "./stages/landing";
 import Explanation from "./stages/explanation";
@@ -11,6 +11,17 @@ import "./App.css";
 
 const App = () => {
   const [currentStep, setCurrentStep] = useState("landing");
+  const [currentOrientation, setCurrentOrientation] = useState(window.screen.orientation.type);
+  
+  useEffect(() => {
+    console.log("orientation: ", currentOrientation)
+  },[currentOrientation])
+
+  const changeOrientation = () => {
+    setCurrentOrientation(window.screen.orientation.type)
+  }
+
+  window.addEventListener("resize", changeOrientation)
 
   const renderStep = (step) => {
     
