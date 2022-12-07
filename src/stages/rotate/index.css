@@ -1,17 +1,23 @@
 @media screen and (orientation: portrait){
   #for-vertical h3{
     color: #fff;
-    font-size: 3rem;
+    font-size: 2rem;
     margin-top: 50%;
+    text-align: center;
   }
   #for-vertical img {
-      margin-top: 50px !important;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 20vh !important;
       animation-duration: 3s;
       animation-name: rotar45;
       animation-iteration-count: infinite;
       animation-direction: alternate;
-
     }
+  #for-vertical #rotacion {
+    margin-top: 5vh !important;
+  }    
   @keyframes rotar45 {
     from { 
       transform: rotate(0deg); 

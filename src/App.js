@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Landing from "./stages/landing";
 import Explanation from "./stages/explanation";
 import Game from "./stages/game";
-import Rotate from "components/rotate";
+import Rotate from "stages/rotate";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'animate.css';
