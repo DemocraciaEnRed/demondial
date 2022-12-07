@@ -12,7 +12,7 @@ const hideButtonNext = () => {
 };
 const showButtonNext = () => {
     buttonNext.x = 1200;
-    buttonNext.y = 750;
+    buttonNext.y = 800;
 };
 const showButtonDeNuevo = () => {
     deNuevoButton.x = 1000;
@@ -274,11 +274,11 @@ window.Ask = class {
         textAnswerC.setText(this.currentC);
         textAnswerD.setText(this.currentD);
         answerFondoClip.gotoAndStop(2);
-        answerA.x = answerB.x = answerC.x = answerD.x = 620;
-        answerA.y = 470;
-        answerB.y = 540;
-        answerC.y = 610;
-        answerD.y = 680;
+        answerA.x = answerB.x = answerC.x = answerD.x = 640;
+        answerA.y = 420;
+        answerB.y = 530;
+        answerC.y = 640;
+        answerD.y = 750;
     }
     
     showExplanation() {
