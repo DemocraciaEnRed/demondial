@@ -19,7 +19,7 @@ const Explanation = ({ follow }) => {
 
   return (
     <WithBackground background={Background} > 
-      <div className="animate__animated animate__fadeIn enFrame">
+      <div className="animate__animated animate__fadeIn">
         <Logo />
         <div className="topics col-10">
           <p className="topics-description">{frases[Math.floor(Math.random()*frases.length)]}</p>
