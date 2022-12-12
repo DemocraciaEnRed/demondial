@@ -199,7 +199,7 @@ DATA = {
 
 renames = {v['name']: k for k,v in DATA.items()}
 df = pd.read_excel('preguntas.xlsx')
-df['Pais'] = df['Pais'].replace(renames)
+df['País'] = df['País'].replace(renames)
 df = df.drop(['#','Asignado', 'Fuente'], axis=1)
 df = df.rename(columns={'Pregunta': 'text'})
 df = df.dropna(subset='Respuesta correcta')
@@ -212,9 +212,9 @@ df['C-res'] = df['Respuesta correcta'].replace({'C': True, 'A': False, 'B': Fals
 df['D-res'] = df['Respuesta correcta'].replace({'D': True, 'A': False, 'B': False, 'C': False})
 
 df = df.replace(np.nan, '')
-for p in df['Pais'].unique():
+for p in df['País'].unique():
     list_preg = []
-    df_pais = df[df['Pais'] == p].copy().reset_index()
+    df_pais = df[df['País'] == p].copy().reset_index()
     for i in range(0, len(df_pais)):
         dict_preg_res = {'text': df_pais['text'][i]}
         dict_preg_res['options'] = [
@@ -223,12 +223,12 @@ for p in df['Pais'].unique():
             [df_pais['C'][i], df_pais['C-res'][i]],
             [df_pais['D'][i], df_pais['D-res'][i]],
         ]
-        dict_preg_res['explanation'] = df_pais['Explicacion?'][i] 
+        dict_preg_res['explanation'] = df_pais['Explicación recortada'][i] 
         list_preg.append(dict_preg_res)
     DATA[p]['asks'] = list_preg
 
 
-file = open("final.txt","w")
+file = open("final.json","w")
 for key, value in DATA.items(): 
     file.write('%s:%s\n' % (key, value))
 file.close()
