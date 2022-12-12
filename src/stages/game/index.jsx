@@ -13,7 +13,7 @@ export default function Game() {
   return (
     <WithBackground background={Background} light>
         <Countdown setIsLoading={setIsLoading}/>
-        <div style={{visibility: isLoading ? 'hidden' : 'visible'}}><Frame src="/wickgame.html"/></div>
+        <div style={{visibility: isLoading ? 'hidden' : 'visible'}}><Frame src="/wickgame/index.html"/></div>
     </WithBackground>
   );
 };
