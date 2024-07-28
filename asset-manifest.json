@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/demondial/static/css/main.33ecbf59.css",
-    "main.js": "/demondial/static/js/main.60318af2.js",
+    "main.js": "/demondial/static/js/main.d6830961.js",
     "static/js/787.335b4685.chunk.js": "/demondial/static/js/787.335b4685.chunk.js",
     "static/media/background.jpg": "/demondial/static/media/background.e80f2eb32d412d45705a.jpg",
     "static/media/GeneralSansMedium.woff": "/demondial/static/media/GeneralSansMedium.9ff9c3429a09b987bdec.woff",
@@ -11,11 +11,11 @@
     "static/media/rotame.png": "/demondial/static/media/rotame.035f52b616fdf89513a2.png",
     "index.html": "/demondial/index.html",
     "main.33ecbf59.css.map": "/demondial/static/css/main.33ecbf59.css.map",
-    "main.60318af2.js.map": "/demondial/static/js/main.60318af2.js.map",
+    "main.d6830961.js.map": "/demondial/static/js/main.d6830961.js.map",
     "787.335b4685.chunk.js.map": "/demondial/static/js/787.335b4685.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.33ecbf59.css",
-    "static/js/main.60318af2.js"
+    "static/js/main.d6830961.js"
   ]
 }
